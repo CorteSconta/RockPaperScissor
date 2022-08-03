@@ -7,22 +7,36 @@
   <title>Document</title>
 </head>
 <body>
+  <h1>Mannaggia la forbice!</h1>
   <p id="results"></p>
   <script>
-    let choices = ['rock', 'paper', 'scissor'];
-    function getComputerChoice(choices) {
-      return choices[Math.floor(Math.random()*choices.length)];
-    }
+    const choices = ['rock', 'paper', 'scissor'];
+    //  function getComputerChoice(choices) {
+    //    return choices[Math.floor(Math.random()*choices.length)];
+    //  }
 
-  let playerSelection = prompt('Enter your selection', 'rock, paper or scissor?');
+  // let computerSelection = getComputerChoice(choices).toString()
 
-    function round(playerSelection, getComputerChoice) {
-      if (playerSelection.toLowerCase() === getComputerChoice) {
-        document.getElementById('results').innerHTML = 'Thats a tie!'
-      } else {
-        document.getElementById('results').innerHTML = 'Thats a pie'
+    function playRound() {
+      let getComputerChoice = choices[Math.floor(Math.random()*choices.length)].toString();
+      // let computerSelection = getComputerChoice;
+      let playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
 
-      }
+        if (playerSelection === getComputerChoice) {
+            document.getElementById('results').innerHTML = 'Thats a tie!'   
+        } else if (playerSelection == 'rock' && getComputerChoice == 'scissor') {
+            document.getElementById('results').innerHTML = 'Yeah! rock beat scissors!';
+        } else if (playerSelection == 'rock' && getComputerChoice == 'paper') {
+            document.getElementById('results').innerHTML = 'unlucky one! paper beats rock!';
+        } else if (playerSelection == 'paper' && getComputerChoice == 'rock') {
+            document.getElementById('results').innerHTML = 'Yeah! paper beats rock!';
+        } else if (playerSelection == 'paper' && getComputerChoice == 'scissor') {
+            document.getElementById('results').innerHTML = 'unlucky one! scissor beats paper!';
+        } else if (playerSelection == 'scissor' && getComputerChoice == 'rock') {
+            document.getElementById('results').innerHTML = 'unlucky one! rock beats scissor!';
+        } else 
+          document.getElementById('results').innerHTML = 'yeah! scissor beats paper!';
+        
     }
   </script>
 </body>

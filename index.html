@@ -8,35 +8,86 @@
 </head>
 <body>
   <h1>Mannaggia la forbice!</h1>
+  <h3>Do you wanna try the mighty IA?</h3>
+  <button id="start">Start the game!</button>
   <p id="results"></p>
   <script>
+
+    // function getComputerChoice() {
+    //   let choices = ['rock', 'paper', 'scissor'];
+    //   return choices[Math.floor(Math.random()*choices.length)]; 
+    // } 
+
+    // let playerScore = 0;
+    // let computerScore = 0;
+
+    //ROUND FUNCTION PROMPT
+    // function playRound(playerSelection, computerSelection) {
+    //    if (playerSelection === computerSelection) {
+    //        return 'Thats a tie!';   
+    //     }  else if (playerSelection == 'rock' && computerSelection == 'scissor') {
+    //         playerScore++;
+    //         return 'Yeah! rock beat scissors!';
+    //     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+    //         playerScore++;
+    //         return 'Yeah! paper beats rock!';
+    //     } else if (playerSelection == 'scissor' && computerSelection == 'paper') {
+    //         playerScore++;
+    //         return 'yeah! scissor beats paper!';
+    //     } else 
+    //       computerScore++;
+    //       return `unlucky one! ${computerSelection} beats ${playerSelection}!`;
+    // }
+
+    // LOOP
+    // function game() {
+    //   for (let i = 0; i < 5; i++) {
+    //       playRound(playerSelection, computerSelection);
+    //   }
+    //   if (playerScore > computerScore) {
+    //     return 'You win the game';
+    //   } else 
+    //     return 'You Lost the game';
+    // }
+
+    // const computerSelection = getComputerChoice();
+    // const playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
+    // console.log(playRound(playerSelection, computerSelection))
+    
+    
+    //SECONDA VERSIONE
+    let playerScore = 0;
+    let computerScore = 0;
+
     const choices = ['rock', 'paper', 'scissor'];
-    //  function getComputerChoice(choices) {
-    //    return choices[Math.floor(Math.random()*choices.length)];
-    //  }
-
-  // let computerSelection = getComputerChoice(choices).toString()
-
     function playRound() {
       let getComputerChoice = choices[Math.floor(Math.random()*choices.length)].toString();
-      // let computerSelection = getComputerChoice;
       let playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
-
-        if (playerSelection === getComputerChoice) {
-            document.getElementById('results').innerHTML = 'Thats a tie!'   
-        } else if (playerSelection == 'rock' && getComputerChoice == 'scissor') {
-            document.getElementById('results').innerHTML = 'Yeah! rock beat scissors!';
-        } else if (playerSelection == 'rock' && getComputerChoice == 'paper') {
-            document.getElementById('results').innerHTML = 'unlucky one! paper beats rock!';
+       if (playerSelection === getComputerChoice) {
+            return document.getElementById('results').innerHTML = 'Thats a tie!';   
+        }  else if (playerSelection == 'rock' && getComputerChoice == 'scissor') {
+            playerScore++;
+            return document.getElementById('results').innerHTML = 'Yeah! rock beat scissors!';
         } else if (playerSelection == 'paper' && getComputerChoice == 'rock') {
-            document.getElementById('results').innerHTML = 'Yeah! paper beats rock!';
-        } else if (playerSelection == 'paper' && getComputerChoice == 'scissor') {
-            document.getElementById('results').innerHTML = 'unlucky one! scissor beats paper!';
-        } else if (playerSelection == 'scissor' && getComputerChoice == 'rock') {
-            document.getElementById('results').innerHTML = 'unlucky one! rock beats scissor!';
+            playerScore++;
+            return document.getElementById('results').innerHTML = 'Yeah! paper beats rock!';
+        } else if (playerSelection == 'scissor' && getComputerChoice == 'paper') {
+            playerScore++;
+            return document.getElementById('results').innerHTML = 'Yeah! scissor beats paper!';
         } else 
-          document.getElementById('results').innerHTML = 'yeah! scissor beats paper!';
-        
+          computerScore++;
+          return document.getElementById('results').innerHTML = `Not lucky today na? ${getComputerChoice} beats ${playerSelection}`;
+    }
+
+    function game() {
+      for (let i = 0; i < 5; i++) {
+          playRound();
+          // console.log(playRound());
+      }
+      if (playerScore > computerScore) {
+        return 'You win the game';
+      } else 
+        return 'You Lost the game';
     }
   </script>
 </body>

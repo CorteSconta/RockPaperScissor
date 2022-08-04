@@ -64,30 +64,32 @@
       let getComputerChoice = choices[Math.floor(Math.random()*choices.length)].toString();
       let playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
        if (playerSelection === getComputerChoice) {
-            return document.getElementById('results').innerHTML = 'Thats a tie!';   
-        }  else if (playerSelection == 'rock' && getComputerChoice == 'scissor') {
+            return 'Thats a tie!'//document.getElementById('results').innerHTML = 'Thats a tie!';   
+        } else if (playerSelection == 'rock' && getComputerChoice == 'scissor') {
             playerScore++;
-            return document.getElementById('results').innerHTML = 'Yeah! rock beat scissors!';
+            return 'Yeah! rock beat scissors!'//document.getElementById('results').innerHTML = 'Yeah! rock beat scissors!';
         } else if (playerSelection == 'paper' && getComputerChoice == 'rock') {
             playerScore++;
-            return document.getElementById('results').innerHTML = 'Yeah! paper beats rock!';
+            return 'Yeah! paper beats rock!'//document.getElementById('results').innerHTML = 'Yeah! paper beats rock!';
         } else if (playerSelection == 'scissor' && getComputerChoice == 'paper') {
             playerScore++;
-            return document.getElementById('results').innerHTML = 'Yeah! scissor beats paper!';
+            return 'Yeah! scissor beats paper!'//document.getElementById('results').innerHTML = 'Yeah! scissor beats paper!';
         } else 
-          computerScore++;
-          return document.getElementById('results').innerHTML = `Not lucky today na? ${getComputerChoice} beats ${playerSelection}`;
+            computerScore++;
+            return `Not lucky today, na? ${getComputerChoice} beats ${playerSelection}`//document.getElementById('results').innerHTML = `Not lucky today na? ${getComputerChoice} beats ${playerSelection}`;
     }
 
+    //loop FUNCTION
     function game() {
       for (let i = 0; i < 5; i++) {
           playRound();
-          // console.log(playRound());
       }
       if (playerScore > computerScore) {
-        return 'You win the game';
+          return `You win the game, ${playerScore} to ${computerScore}`;
+      } else if (playerScore === computerScore) {
+          return `Thats a tie game, ${playerScore} points each of you`;
       } else 
-        return 'You Lost the game';
+        return `You Lost the game, ${computerScore} to ${playerScore}`;
     }
   </script>
 </body>

@@ -13,76 +13,39 @@
   <p id="results"></p>
   <script>
 
-    // function getComputerChoice() {
-    //   let choices = ['rock', 'paper', 'scissor'];
-    //   return choices[Math.floor(Math.random()*choices.length)]; 
-    // } 
+    function getComputerChoice() {
+      let choices = ['rock', 'paper', 'scissor'];
+      return choices[Math.floor(Math.random()*choices.length)]; 
+    } 
 
-    // let playerScore = 0;
-    // let computerScore = 0;
-
-    //ROUND FUNCTION PROMPT
-    // function playRound(playerSelection, computerSelection) {
-    //    if (playerSelection === computerSelection) {
-    //        return 'Thats a tie!';   
-    //     }  else if (playerSelection == 'rock' && computerSelection == 'scissor') {
-    //         playerScore++;
-    //         return 'Yeah! rock beat scissors!';
-    //     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-    //         playerScore++;
-    //         return 'Yeah! paper beats rock!';
-    //     } else if (playerSelection == 'scissor' && computerSelection == 'paper') {
-    //         playerScore++;
-    //         return 'yeah! scissor beats paper!';
-    //     } else 
-    //       computerScore++;
-    //       return `unlucky one! ${computerSelection} beats ${playerSelection}!`;
-    // }
-
-    // LOOP
-    // function game() {
-    //   for (let i = 0; i < 5; i++) {
-    //       playRound(playerSelection, computerSelection);
-    //   }
-    //   if (playerScore > computerScore) {
-    //     return 'You win the game';
-    //   } else 
-    //     return 'You Lost the game';
-    // }
-
-    // const computerSelection = getComputerChoice();
-    // const playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
-    // console.log(playRound(playerSelection, computerSelection))
-    
-    
-    //SECONDA VERSIONE
     let playerScore = 0;
     let computerScore = 0;
 
-    const choices = ['rock', 'paper', 'scissor'];
-    function playRound() {
-      let getComputerChoice = choices[Math.floor(Math.random()*choices.length)].toString();
-      let playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
-       if (playerSelection === getComputerChoice) {
-            return 'Thats a tie!'//document.getElementById('results').innerHTML = 'Thats a tie!';   
-        } else if (playerSelection == 'rock' && getComputerChoice == 'scissor') {
+    //ROUND FUNCTION PROMPT
+    function playRound(playerSelection, computerSelection) {
+       if (playerSelection === computerSelection) {
+           return 'Thats a tie!';   
+        }  else if (playerSelection == 'rock' && computerSelection == 'scissor') {
             playerScore++;
-            return 'Yeah! rock beat scissors!'//document.getElementById('results').innerHTML = 'Yeah! rock beat scissors!';
-        } else if (playerSelection == 'paper' && getComputerChoice == 'rock') {
+            return 'Yeah! rock beat scissors!';
+        } else if (playerSelection == 'paper' && computerSelection == 'rock') {
             playerScore++;
-            return 'Yeah! paper beats rock!'//document.getElementById('results').innerHTML = 'Yeah! paper beats rock!';
-        } else if (playerSelection == 'scissor' && getComputerChoice == 'paper') {
+            return 'Yeah! paper beats rock!';
+        } else if (playerSelection == 'scissor' && computerSelection == 'paper') {
             playerScore++;
-            return 'Yeah! scissor beats paper!'//document.getElementById('results').innerHTML = 'Yeah! scissor beats paper!';
+            return 'yeah! scissor beats paper!';
         } else 
-            computerScore++;
-            return `Not lucky today, na? ${getComputerChoice} beats ${playerSelection}`//document.getElementById('results').innerHTML = `Not lucky today na? ${getComputerChoice} beats ${playerSelection}`;
+          computerScore++;
+          return `unlucky one! ${computerSelection} beats ${playerSelection}!`;
     }
 
-    //loop FUNCTION
+    //LOOP
     function game() {
       for (let i = 0; i < 5; i++) {
-          playRound();
+        const computerSelection = getComputerChoice();
+        const playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
+        playRound(playerSelection, computerSelection);
+        console.log(playRound(playerSelection, computerSelection))
       }
       if (playerScore > computerScore) {
           return `You win the game, ${playerScore} to ${computerScore}`;
@@ -91,6 +54,57 @@
       } else 
         return `You Lost the game, ${computerScore} to ${playerScore}`;
     }
+
+    // const computerSelection = getComputerChoice();
+    // const playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
+    // console.log(playRound(playerSelection, computerSelection))
+    
+    
+    //SECONDA VERSIONE
+
+    /*let playerScore = 0;
+    let computerScore = 0;
+
+    const choices = ['rock', 'paper', 'scissor'];
+
+    //ROUND FUNCTION:
+    function round() {
+      let getComputerChoice = choices[Math.floor(Math.random()*choices.length)]; //.toString();
+      let playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
+      
+        if (playerSelection === getComputerChoice) {
+              console.log(tie) //------- log at every loop
+              return tie //document.getElementById('results').innerHTML = 'Thats a tie!'; // ----- next time in <p>
+          } else if (playerSelection == 'rock' && getComputerChoice == 'scissor' || 
+                     playerSelection == 'paper' && getComputerChoice == 'rock' ||
+                     playerSelection == 'scissor' && getComputerChoice == 'paper') {
+              console.log(win);
+              playerScore++;
+              return win //document.getElementById('results').innerHTML = 'Yeah! rock beat scissors!';
+          } else 
+              console.log(lose);
+              computerScore++;
+              return lose   //document.getElementById('results').innerHTML = `Not lucky today na? ${getComputerChoice} beats ${playerSelection}`;
+      }
+    
+    
+
+    //loop FUNCTION:
+    function game() {
+      for (let i = 0; i < 5; i++) {
+          round();
+      }
+      if (playerScore > computerScore) {
+          return `You win the game, ${playerScore} to ${computerScore}`;
+      } else if (playerScore === computerScore) {
+          return `Thats a tie game, ${playerScore} points each of you`;
+      } else 
+        return `You Lost the game, ${computerScore} to ${playerScore}`;
+    }
+    //win variable
+    let tie = 'Thats a tie!'
+    let win = `Yeah!`;
+    let lose = `Not lucky today, na?`; */ 
   </script>
 </body>
 </html>

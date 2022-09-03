@@ -16,60 +16,62 @@
   </div>
 
   <div class="results">
-    <p class="playerScore"></p>
-    <p class="computerScore"></p>
+    <div class="scores">
+      <p id="playerResult"></p>
+      <p id="computerResult"></p>
+    </div>
+    <p id="roundResult"></p>
+    <p id="gameOver"></p>
   </div>
   <script>
-  
-    //SECONDA VERSIONE
+    const choices = ['Rock!', 'Paper!', 'Scissor!'];
+    const buttons = document.querySelectorAll(".playerChoice");
+    const pScore = document.getElementById("#playerResult");
+    const cScore = document.getElementById("#computerResult");
+
     let playerScore = 0;
     let computerScore = 0; 
+    let playerSelection;
+    let getComputerChoice;
 
-    const choices = ['Rock!', 'Paper!', 'Scissor!'];
-    const buttons = document.getElementsByClassName("playerChoice");
-
-    let playerSelection = "";
-
-    for(let i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener("click", (e) => {
-        console.log(buttons[i].innerHTML);
-        playerSelection = "";
-        playerSelection += (buttons[i].innerHTML);
-      },)
-    };
-
+    //Main round structure
+    buttons.forEach(button => button.addEventListener("click", () => {
+      playerSelection = button.textContent;
+      getComputerChoice = choices[Math.floor(Math.random()*choices.length)]
+        .toString();
+      playerResult.textContent = `Human: ${playerScore}`;
+      computerResult.textContent = `I.A.: ${computerScore}`;
+      playRound();
+      endGame();
+    }))
+    
     function playRound() {
-      let getComputerChoice = choices[Math.floor(Math.random()*choices.length)].toString();
-      //let playerSelection = prompt('Enter your selection', 'rock, paper or scissor?').toLowerCase();
-       if (playerSelection === getComputerChoice) {
-            return 'Thats a tie!'//document.getElementById('results').innerHTML = 'Thats a tie!';   
-        } else if (playerSelection == 'Rock!' && getComputerChoice == 'Scissor!') {
-            playerScore++;
-            return 'Yeah! rock beat scissors!'//document.getElementById('results').innerHTML = 'Yeah! rock beat scissors!';
-        } else if (playerSelection == 'Paper!' && getComputerChoice == 'Rock!') {
-            playerScore++;
-            return 'Yeah! paper beats rock!'//document.getElementById('results').innerHTML = 'Yeah! paper beats rock!';
-        } else if (playerSelection == 'Scissor!' && getComputerChoice == 'Paper!') {
-            playerScore++;
-            return 'Yeah! scissor beats paper!'//document.getElementById('results').innerHTML = 'Yeah! scissor beats paper!';
-        } else 
-            computerScore++;
-            return `Not lucky today, na? ${getComputerChoice} beats ${playerSelection}`//document.getElementById('results').innerHTML = `Not lucky today na? ${getComputerChoice} beats ${playerSelection}`;
+      if (playerSelection === getComputerChoice) {
+          return document.getElementById('roundResult').innerHTML = 'Thats a tie!';   
+          console.log("tie")
+      } else if (playerSelection == 'Rock!' && getComputerChoice == 'Scissor!') {
+          playerScore++;
+          return document.getElementById('roundResult').innerHTML = 'Yeah! rock beat scissors!';
+      } else if (playerSelection == 'Paper!' && getComputerChoice == 'Rock!') {
+          playerScore++;
+          return document.getElementById('roundResult').innerHTML = 'Yeah! paper beats rock!';
+      } else if (playerSelection == 'Scissor!' && getComputerChoice == 'Paper!') {
+          playerScore++;
+          return document.getElementById('roundResult').innerHTML = 'Yeah! scissor beats paper!';
+      } else 
+          computerScore++;
+          return document.getElementById('roundResult').innerHTML = `Not lucky today na? ${getComputerChoice} beats ${playerSelection}`;
     }
 
-
-    // //loop FUNCTION
-    // function game() {
-    //   for (let i = 0; i < 5; i++) {
-    //       playRound();
-    //   }
-    //   if (playerScore > computerScore) {
-    //       return `You win the game, ${playerScore} to ${computerScore}`;
-    //   } else if (playerScore === computerScore) {
-    //       return `Thats a tie game, ${playerScore} points each of you`;
-    //   } else 
-    //     return `You Lost the game, ${computerScore} to ${playerScore}`;
-    // }
+    function endGame() {
+      if(playerScore === 5 || computerScore === 5) {
+        for(button of buttons) button.disabled = true; // loop trough ALL the buttons with the CONST buttons
+        return (playerScore < computerScore)
+          ? document.getElementById("gameOver").innerHTML = "Noooo! you lost!" 
+          : document.getElementById("gameOver").innerHTML = "Yeah! you win!"   
+        
+      }
+    }
   </script>
 </body>
 </html>

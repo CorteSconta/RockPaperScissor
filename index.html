@@ -64,12 +64,16 @@
     }
 
     function endGame() {
-      if(playerScore === 5 || computerScore === 5) {
+      if(playerScore >= 5 || computerScore >= 5) {
         for(button of buttons) button.disabled = true; // loop trough ALL the buttons with the CONST buttons
         return (playerScore < computerScore)
           ? document.getElementById("gameOver").innerHTML = "Noooo! you lost!" 
           : document.getElementById("gameOver").innerHTML = "Yeah! you win!"   
-        
+        if(window.confirm("Do you wanna play again?")) {
+          window.location.reload(true)
+        } else txt = "boooo"
+         
+          
       }
     }
   </script>
